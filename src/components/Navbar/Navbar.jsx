@@ -44,7 +44,7 @@ function Navbar() {
           <div className=" flex flex-col md:flex-row gap-6 w-full sm:justify-around items-center">
             {navData.map((item, idx) => (
               <Link
-                to={`/${item.name}`}
+                to={`/catalog/${item.name}`}
                 key={idx}
                 className={`${"group text-black font-medium text-lg hover:text-mainColor hover:underline underline-offset-[1rem]"} cursor-pointer`}
                 onClick={() => {
