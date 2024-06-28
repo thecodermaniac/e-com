@@ -1,21 +1,38 @@
-const Spinner = ({ className, size = "default" }) => {
-  let sizeClasses;
-  switch (size) {
-    case "addToCart":
-      sizeClasses = "w-8 h-8 md:w-12 md:h-12 border-5";
-      break;
-    case "addToCartSm":
-      sizeClasses = "w-8 h-8 border-5";
-      break;
-    default:
-      sizeClasses = "w-20 h-20 border-10";
-  }
+import React from "react";
 
-  return (
-    <div className="h-screen flex justify-center items-center">
-      <div
-        className={`${sizeClasses} border-gray-200 border-t-blue-500 rounded-full animate-spin`}
-      ></div>
-    </div>
-  );
+const Spinner = ({ size }) => {
+  switch (size) {
+    case "small":
+      return (
+        <div className="flex justify-center items-center">
+          <div
+            className={`border-gray-200 border-t-mainColor border-2 w-7 h-7 rounded-full animate-spin`}
+          >
+            {" "}
+          </div>
+        </div>
+      );
+    case "large":
+      return (
+        <div className="flex justify-center items-center">
+          <div
+            className={`border-gray-200 border-t-mainColor border-2 w-12 h-12 rounded-full animate-spin`}
+          >
+            {" "}
+          </div>
+        </div>
+      );
+    default:
+      return (
+        <div className="flex justify-center items-center">
+          <div
+            className={`border-gray-200 border-t-mainColor border-2 w-9 h-9 rounded-full animate-spin`}
+          >
+            {" "}
+          </div>
+        </div>
+      );
+  }
 };
+
+export default Spinner;

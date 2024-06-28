@@ -13,14 +13,6 @@ function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [show, setshow] = useState(false);
   const [open, setopen] = useState(false);
-  // useEffect(() => {
-  //   const user = localStorage.getItem("9-5Car");
-  //   if (user) {
-  //     setUser(JSON.parse(user));
-  //   } else {
-  //     setUser(null);
-  //   }
-  // }, [setUser]);
 
   return (
     <>
@@ -33,13 +25,18 @@ function Navbar() {
           <Link to={"/"}>
             <img src={Logo} alt="Matricula" className="w-36" />
           </Link>
-          <button onClick={() => setShowMenu(!showMenu)} className="md:hidden">
-            <img src={Menu} alt="Menu" className="w-6" />
-          </button>
+          <div className="md:hidden flex flex-row gap-3">
+            <Link to={"/cart"}>
+              <CartIcon />
+            </Link>
+            <button onClick={() => setShowMenu(!showMenu)}>
+              <img src={Menu} alt="Menu" className="w-6" />
+            </button>
+          </div>
         </div>
         <div
           className={`flex flex-col md:flex-row absolute md:relative mt-16 md:mt-0 bg-white ${
-            showMenu ? "h-72 md:h-max z-20" : "h-0 md:h-max"
+            showMenu ? "h-96 md:h-max z-20" : "h-0 md:h-max"
           } transition-all duration-300 overflow-hidden md:overflow-visible md:w-[80%] w-full `}
         >
           <div className=" flex flex-col md:flex-row gap-6 w-full sm:justify-around items-center">
@@ -60,9 +57,7 @@ function Navbar() {
                 {/* <span className="hidden group-hover:block">hghg</span> */}
               </Link>
             ))}
-            <Link to={"/cart"}>
-              <CartIcon />
-            </Link>
+
             <div className="md:hidden flex-row md:w-[40%] w-full justify-center gap-4 bg-white flex">
               {null === null ? (
                 <button
@@ -87,7 +82,10 @@ function Navbar() {
             </div>
           </div>
 
-          <div className="md:flex flex-row md:w-[40%] w-full justify-end gap-4 bg-white hidden">
+          <div className="md:flex flex-row md:w-[40%] w-full justify-end gap-4 bg-white hidden items-center">
+            <Link to={"/cart"}>
+              <CartIcon />
+            </Link>
             {null === null ? (
               <button
                 className="bg-mainColor border-mainColor border-2 text-white px-5 py-4  hover:text-mainColor hover:bg-white"

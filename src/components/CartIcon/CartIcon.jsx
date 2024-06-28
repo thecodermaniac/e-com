@@ -17,7 +17,7 @@ const CartIcon = () => {
   const amountStyles =
     totalQuantity === 0
       ? "hidden"
-      : "relative top-0 right-0 w-0 h-0 text-[#ff5a1e] bg-back-c-detail";
+      : "relative top-0 right-0 w-0 h-0 text-mainColor bg-back-c-detail";
 
   useEffect(() => {
     if (totalQuantity === 0) {
@@ -37,7 +37,7 @@ const CartIcon = () => {
 
   return (
     <div className={iconStyles}>
-      <CgShoppingBag />
+      <CgShoppingBag className="w-6 h-6" />
       <div className={amountStyles}>
         <div>{totalQuantity}</div>
       </div>

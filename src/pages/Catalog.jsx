@@ -42,11 +42,11 @@ const Catalog = () => {
     ?.join(" ");
   return (
     <div>
-      <div className="mb-[1.125rem] flex flex-row">
+      <div className="mb-[1.125rem] flex flex-row gap-2 items-end my-4 w-full">
         <button onClick={() => navigate(-1)}>
-          <MdArrowBack />
+          <MdArrowBack className="w-7 h-7" />
         </button>
-        <p className="font-vietnam mb-5 text-nordColor1 font-semibold text-3xl">
+        <p className="text-nordColor1 font-semibold text-3xl w-full">
           {convertedString}
         </p>
       </div>

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useParams } from "react-router-dom";
 import { getSingleProduct } from "../features/products/productSlice";
 import { addToCart } from "../features/carts/cartSlice";
 import { Link } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const Product = () => {
   const { product, isLoading } = useAppSelector((state) => state.product);
@@ -28,25 +29,31 @@ const Product = () => {
     dispatch(addToCart(cartProduct)).then(() => {
       setIsLoadingProduct(false);
     });
-    useEffect(() => {
-      dispatch(getSingleProduct(Number(id)));
-    }, []);
   };
 
-  if (isLoading) return <Spinner />;
+  useEffect(() => {
+    dispatch(getSingleProduct(Number(id)));
+  }, []);
+
+  if (isLoading)
+    return (
+      <div className="top-[50%] absolute h-[100%]">
+        <Spinner size={"large"} />
+      </div>
+    );
   return (
     <>
-      <div className="flex md:flex-row flex-col-reverse gap-5 relative">
+      <div className="flex md:flex-row flex-col-reverse gap-5 relative mt-10 max-w-screen-lg">
         <div className="flex flex-col flex-1 items-start gap-7">
           <p className="font-vietnam mb-5 text-nordColor1 font-semibold text-3xl">
-            {product.title}
+            {product?.title}
           </p>
-          <p className="font-normal opacity-70">{product.description}</p>
+          <p className="font-normal opacity-70">{product?.description}</p>
           <p>
-            <b>{product.rating.count}</b> people rated{" "}
-            <b>{product.rating.rate}</b>
+            <b>{product?.rating?.count}</b> people rated{" "}
+            <b>{product?.rating?.rate}</b>
           </p>
-          <div className="flex flex-row ">
+          <div className="flex flex-row gap-8">
             <button
               className="py-3 px-5 border-mainColor border-2 text-mainColor font-medium hover:text-white hover:bg-mainColor"
               onClick={addToCartHandler}
@@ -57,16 +64,21 @@ const Product = () => {
                 "Add to Cart"
               )}
             </button>
-            <Link className="py-3 px-5 border-mainColor border-2 text-mainColor font-medium hover:text-white hover:bg-mainColor">
+            <Link
+              to="/catalog/All"
+              className="py-3 px-5 border-mainColor border-2 text-mainColor font-medium hover:text-white hover:bg-mainColor"
+            >
               Continue Shopping
             </Link>
           </div>
         </div>
 
-        <div className="md:flex-1 items-center w-full">
-          <div className=" xl:w-full w-[90%]">
-            <img src={product.image} alt="car image" />
-          </div>
+        <div className="md:flex-1 flex items-center w-full justify-end">
+          <img
+            src={product?.image}
+            alt="pdt image"
+            className="w-72 h-80 object-contain"
+          />
         </div>
       </div>
     </>

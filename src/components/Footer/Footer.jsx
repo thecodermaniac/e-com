@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="h-full w-full flex flex-col md:flex-row items-start ">
           <div className="flex flex-col gap-4 items-start justify-between w-full flex-wrap flex-grow-1 basis-[70%] p-8 px-0 md:px-8 md:max-h-[12rem] overflow-hidden">
             {navData.map((link) => (
-              <Link to={`/${link.name}`} key={link.id}>
+              <Link to={`/catalog/${link.name}`} key={link.id}>
                 {link.name}
               </Link>
             ))}
@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
             <div>
               <h2>Email:</h2>
-              <a href="mailto:hey@matricula.co.in">hey@carwala.co.in</a>
+              <a href="mailto:hey@95mart.co.in">hey@95mart.co.in</a>
             </div>
             <div>
               <h2>Contact No:</h2>
@@ -36,9 +36,9 @@ const Footer = () => {
           </div>
         </div>
         <p className="text-center text-sm text-neutral-300">
-          &copy; {new Date().getFullYear()} CarWala . All rights reserved | Site
+          &copy; {new Date().getFullYear()} 95 Mart . All rights reserved | Site
           maintained by{" "}
-          <a href="https://serein.io/" target="_blank">
+          <a href="https://github.com/thecodermaniac" target="_blank">
             thecodermaniac
           </a>
         </p>
