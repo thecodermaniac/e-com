@@ -8,6 +8,15 @@ export default {
         grayText: "#9D9E9D",
         secondColor: "#edeff1",
       },
+      keyframes: {
+        spin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+      },
+      animation: {
+        spin: "spin 1s linear infinite",
+      },
     },
   },
   plugins: [],
