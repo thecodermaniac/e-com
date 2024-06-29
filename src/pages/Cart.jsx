@@ -24,7 +24,7 @@ const Cart = () => {
   );
   if (isLoading)
     return (
-      <div className="top-[50%] absolute h-[100%]">
+      <div className="top-[50%] left-[50%] translate-x-[-50%] absolute h-[100%]">
         <Spinner size={"large"} />
       </div>
     );
@@ -39,17 +39,17 @@ const Cart = () => {
         </p>
       </div>
       {cartItems.length ? (
-        <div className="flex justify-center flex-row overflow-y-auto">
-          <div className="m-4 p-4 border-r-2 ">
+        <div className="flex justify-center md:flex-row overflow-y-auto flex-col">
+          <div className="md:m-4 md:p-4 md:border-r-2 border-b-2 p-2">
             <div
-              className="flex justify-end cursor-pointer hover:text-grayText"
+              className="flex justify-end cursor-pointer hover:text-grayText md:text-black text-grayText mb-4"
               onClick={() => dispatch(cartReset())}
             >
               Empty Cart
             </div>
             {cartItems.map((item) => {
               return (
-                <div className="p-4 m-4 flex gap-9 justify-between">
+                <div className="md:p-4 md:m-4 flex gap-9 justify-between flex-col md:flex-row">
                   <Link
                     to={`/products/${item.product.id}`}
                     className="flex justify-between gap-4"

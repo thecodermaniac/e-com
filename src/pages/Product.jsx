@@ -37,7 +37,7 @@ const Product = () => {
 
   if (isLoading)
     return (
-      <div className="top-[50%] absolute h-[100%]">
+      <div className="top-[50%] left-[50%] translate-x-[-50%] absolute h-[100%]">
         <Spinner size={"large"} />
       </div>
     );
@@ -66,14 +66,14 @@ const Product = () => {
             </button>
             <Link
               to="/catalog/All"
-              className="py-3 px-5 border-mainColor border-2 text-mainColor font-medium hover:text-white hover:bg-mainColor"
+              className="py-3 px-5 border-mainColor border-2 bg-mainColor hover:text-mainColor font-medium text-white hover:bg-white text-center"
             >
               Continue Shopping
             </Link>
           </div>
         </div>
 
-        <div className="md:flex-1 flex items-center w-full justify-end">
+        <div className="md:flex-1 flex items-center w-full justify-center md:justify-end">
           <img
             src={product?.image}
             alt="pdt image"

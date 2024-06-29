@@ -4,31 +4,24 @@ import closeIcon from "../assets/close.png";
 import signupimg from "../assets/logo_vector.svg";
 import eye from "../assets/view.png";
 import eyeClosed from "../assets/hide.png";
-import { toast } from "react-toastify";
+import { login } from "../features/auth/authSlice";
+import { useAppDispatch } from "../app/hooks";
 
 // eslint-disable-next-line react/prop-types
 const Login = ({ setmodal }) => {
+  const dispatch = useAppDispatch();
   const [show, setshow] = useState(true);
   const [existUser, setExistUser] = useState({
-    email: "",
+    name: "",
     password: "",
   });
   const handleToggle = () => {
     setshow((prev) => !prev);
   };
-  function handleLogin() {
-    // axiosInstance.post('http://localhost:5000/user/sign-in-User', {
-    //   email: existUser.email,
-    //   password: existUser.password
-    // }).then((response) => {
-    //   console.log(response.data.data);
-    //   setUser(response.data.data)
-    //   localStorage.setItem('9-5Car', JSON.stringify(response.data.data))
-    //   toast.success('Logged In')
-    //   handleToggle()
-    // }).catch((error) => {
-    //   toast.error(error.response.data.message)
-    // })
+  async function handleLogin() {
+    const username = existUser.name;
+    const password = existUser.password;
+    await dispatch(login({ username, password }));
   }
   return (
     <div className="flex flex-col  relative">
@@ -46,13 +39,13 @@ const Login = ({ setmodal }) => {
         <img src={signupimg} alt={"sign up"} className="h-32" />
       </div>
       <label className="font-[600] text-grayText tracking-[0.15em]">
-        Email
+        UserName
       </label>
       <input
-        type="email"
+        type="text"
         className="border-2 px-2 rounded-md bg-slate-200 mt-2 p-1 py-2"
         onChange={(e) => {
-          setExistUser({ ...existUser, email: e.target.value });
+          setExistUser({ ...existUser, name: e.target.value });
         }}
       />
       <label className="font-[600] text-grayText tracking-[0.15em]">

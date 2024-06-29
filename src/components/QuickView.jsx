@@ -29,7 +29,7 @@ const QuickView = () => {
   return (
     <section>
       <p className="text-3xl font-bold my-6">Quick View</p>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center overflow-x-auto">
         <div className="flex items-center justify-between gap-4">
           {navData?.map((item) => {
             return (
@@ -56,7 +56,7 @@ const QuickView = () => {
           to={`/catalog/${String(selectedCategory)}`}
           className="flex justify-center items-center"
         >
-          <div className="text-2xl font-thin border-mainColor text-mainColor px-5 py-4  hover:text-grayText">
+          <div className="text-base md:text-2xl font-thin border-mainColor text-mainColor px-5 py-4  hover:text-grayText">
             View More
           </div>
         </Link>

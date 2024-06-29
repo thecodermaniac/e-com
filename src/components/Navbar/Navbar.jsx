@@ -6,14 +6,30 @@ import { Link } from "react-router-dom";
 import SignUp from "../SignUp";
 import Login from "../Login";
 import CartIcon from "../CartIcon/CartIcon";
+import { logout, getUser } from "../../features/auth/authSlice";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { useNavigate } from "react-router-dom";
 
 import { navData } from "./NavLinks";
 
 function Navbar() {
+  const { user, token } = useAppSelector((state) => state.auth);
   const [showMenu, setShowMenu] = useState(false);
   const [show, setshow] = useState(false);
   const [open, setopen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (user === null && token) {
+      const userId = localStorage.getItem("user");
+      dispatch(getUser(Number(userId)));
+    }
+  }, [token, user, dispatch]);
 
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate("/");
+  };
   return (
     <>
       <div
@@ -59,7 +75,7 @@ function Navbar() {
             ))}
 
             <div className="md:hidden flex-row md:w-[40%] w-full justify-center gap-4 bg-white flex">
-              {null === null ? (
+              {user === null ? (
                 <button
                   className="bg-mainColor border-mainColor border-2 text-white px-5 py-4  hover:text-mainColor hover:bg-white"
                   onClick={() => {
@@ -73,7 +89,7 @@ function Navbar() {
                   <p className="text-grayText text-lg">{"Aritra"}</p>
                   <button
                     className="bg-mainColor border-mainColor border-2 text-white px-5 py-4  hover:text-mainColor hover:bg-white"
-                    onClick={logout}
+                    onClick={logoutHandler}
                   >
                     Log out
                   </button>
@@ -86,7 +102,7 @@ function Navbar() {
             <Link to={"/cart"}>
               <CartIcon />
             </Link>
-            {null === null ? (
+            {user === null ? (
               <button
                 className="bg-mainColor border-mainColor border-2 text-white px-5 py-4  hover:text-mainColor hover:bg-white"
                 onClick={() => {
@@ -97,10 +113,10 @@ function Navbar() {
               </button>
             ) : (
               <div className="flex items-center gap-3">
-                <p className="text-grayText text-lg">{"Aritra"}</p>
+                <p className="text-grayText text-lg">{user?.name?.firstname}</p>
                 <button
                   className="bg-mainColor border-mainColor border-2 text-white px-5 py-4  hover:text-mainColor hover:bg-white"
-                  onClick={logout}
+                  onClick={logoutHandler}
                 >
                   Log out
                 </button>

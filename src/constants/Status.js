@@ -1,5 +1,5 @@
 export const STATUS = Object.freeze({
-  IDLE: "idle",
+  IDLE: "success",
   LOADING: "loading",
   ERROR: "error",
 });

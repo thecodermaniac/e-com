@@ -8,7 +8,7 @@ const Layouts = ({ children, bgColor }) => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col h-[100%] min-h-screen overflow-hidden">
+      <div className="flex flex-col h-[100%] min-h-screen overflow-hidden md:mb-0 mb-6">
         <main
           className={`${
             bgColor ? bgColor : "white"
