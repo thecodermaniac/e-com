@@ -3,10 +3,12 @@ import closeIcon from "../assets/close.png";
 import signupimg from "../assets/logo_vector.svg";
 import eye from "../assets/view.png";
 import eyeClosed from "../assets/hide.png";
-
-import { toast } from "react-toastify";
+import { signUp } from "../features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 
 const SignUp = ({ setmodal }) => {
+  const dispatch = useAppDispatch();
+  const { isSuccess } = useAppSelector((state) => state.auth);
   const [show, setshow] = useState(true);
   const [newUser, setNewUser] = useState({
     name: "",
@@ -17,19 +19,13 @@ const SignUp = ({ setmodal }) => {
     setshow((prev) => !prev);
   };
   async function handleSignup() {
-    // axiosInstance.post('http://localhost:5000/user/sign-up-User', {
-    //     name: newUser.name,
-    //     email: newUser.email,
-    //     password: newUser.password
-    // }).then((response) => {
-    //     console.log(response.data.body);
-    //     setUser(response.data.body)
-    //     toast.success('Created and Logged In')
-    //     localStorage.setItem('9-5Car', JSON.stringify(response.data.body))
-    // }).catch((error) => {
-    //     console.log(error);
-    //     toast.error(error.response.data.message)
-    // })
+    const username = newUser.name;
+    const email = newUser.email;
+    const password = newUser.password;
+    await dispatch(signUp({ username, password, email }));
+    if (isSuccess) {
+      handleToggle();
+    }
   }
   return (
     <div className="flex flex-col  relative">
@@ -47,7 +43,7 @@ const SignUp = ({ setmodal }) => {
         <img src={signupimg} alt={"sign up"} className="h-32" />
       </div>
       <label className="font-[600] text-grayText tracking-[0.15em]">
-        Full Name
+        User name
       </label>
       <input
         type="text"

@@ -39,7 +39,7 @@ const Login = ({ setmodal }) => {
         <img src={signupimg} alt={"sign up"} className="h-32" />
       </div>
       <label className="font-[600] text-grayText tracking-[0.15em]">
-        UserName
+        User Name
       </label>
       <input
         type="text"

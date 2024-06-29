@@ -86,7 +86,7 @@ function Navbar() {
                 </button>
               ) : (
                 <div className="flex items-center gap-3">
-                  <p className="text-grayText text-lg">{"Aritra"}</p>
+                  <p className="text-grayText text-lg">{user?.username}</p>
                   <button
                     className="bg-mainColor border-mainColor border-2 text-white px-5 py-4  hover:text-mainColor hover:bg-white"
                     onClick={logoutHandler}
@@ -113,7 +113,7 @@ function Navbar() {
               </button>
             ) : (
               <div className="flex items-center gap-3">
-                <p className="text-grayText text-lg">{user?.name?.firstname}</p>
+                <p className="text-grayText text-lg">{user?.username}</p>
                 <button
                   className="bg-mainColor border-mainColor border-2 text-white px-5 py-4  hover:text-mainColor hover:bg-white"
                   onClick={logoutHandler}

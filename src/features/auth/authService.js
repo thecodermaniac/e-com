@@ -16,6 +16,11 @@ const getUser = async (userId) => {
   return response.data;
 };
 
+const signUpUsers = async (userInfo) => {
+  const response = await axiosConfig.post("users", userInfo);
+  return response.data;
+};
+
 const logout = () => {
   localStorage.removeItem("user");
   localStorage.removeItem("userDetails");
@@ -25,6 +30,7 @@ const authService = {
   getUser,
   logout,
   login,
+  signUpUsers,
 };
 
 export default authService;
