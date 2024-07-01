@@ -24,7 +24,7 @@ const CategorySwipe = () => {
               slideShadows: true,
             }}
             loop={true}
-            autoplay={{ delay: 80000, disableOnInteraction: true }}
+            autoplay={{ delay: 1000, disableOnInteraction: true }}
             modules={[EffectCoverflow, Autoplay]}
             className="h-full"
           >
